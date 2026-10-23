@@ -1,0 +1,1156 @@
+<!DOCTYPE html>
+<html lang="mn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Хийх ажлаа төлөвлөе - Мөрөөдлөөс Зорилго руу</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            50: '#f0f9ff',
+                            100: '#e0f2fe',
+                            500: '#0284c7',
+                            600: '#0369a1',
+                            700: '#075985',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc;
+        }
+        .gradient-bg {
+            background: linear-gradient(135deg, #0284c7 0%, #4f46e5 50%, #9333ea 100%);
+        }
+        .card-hover {
+            transition: all 0.25s ease;
+        }
+        .card-hover:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 20px -5px rgba(0, 0, 0, 0.1);
+        }
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f5f9;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
+        }
+    </style>
+</head>
+<body class="text-slate-800 bg-slate-50 min-h-screen flex flex-col justify-between selection:bg-sky-500 selection:text-white">
+
+    <!-- HEADER / NAVIGATION -->
+    <header class="gradient-bg text-white shadow-lg sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3.5">
+            <div class="flex flex-col md:flex-row items-center justify-between gap-4">
+                <!-- Logo & Title -->
+                <div class="flex items-center space-x-3 cursor-pointer" onclick="switchTab('lesson')">
+                    <div class="bg-white/20 p-2.5 rounded-2xl backdrop-blur-md border border-white/20 flex items-center justify-center shadow-inner">
+                        <span class="text-2xl">🚀</span>
+                    </div>
+                    <div>
+                        <h1 class="text-xl md:text-2xl font-black tracking-tight leading-tight">Хийх ажлаа төлөвлөе!</h1>
+                        <p class="text-xs text-sky-100 font-medium">Мөрөөдлөө биелүүлэх зорилго ба төлөвлөгөөний сургалт</p>
+                    </div>
+                </div>
+
+                <!-- Navigation Tabs -->
+                <nav class="flex flex-wrap justify-center gap-1.5 bg-black/20 backdrop-blur-md p-1.5 rounded-2xl border border-white/10 text-xs sm:text-sm font-semibold">
+                    <button onclick="switchTab('lesson')" id="nav-lesson" class="tab-btn px-3.5 py-2 rounded-xl transition-all duration-200 bg-white text-sky-900 shadow font-bold">
+                        📚 Хичээл
+                    </button>
+                    <button onclick="switchTab('builder')" id="nav-builder" class="tab-btn px-3.5 py-2 rounded-xl transition-all duration-200 text-white hover:bg-white/15">
+                        🎯 Зорилго Бүтээх
+                    </button>
+                    <button onclick="switchTab('game')" id="nav-game" class="tab-btn px-3.5 py-2 rounded-xl transition-all duration-200 text-white hover:bg-white/15">
+                        🎮 Тоглоом
+                    </button>
+                    <button onclick="switchTab('board')" id="nav-board" class="tab-btn px-3.5 py-2 rounded-xl transition-all duration-200 text-white hover:bg-white/15">
+                        📋 Миний Самбар
+                    </button>
+                    <button onclick="switchTab('quiz')" id="nav-quiz" class="tab-btn px-3.5 py-2 rounded-xl transition-all duration-200 text-white hover:bg-white/15">
+                        🏆 Батламж
+                    </button>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- MAIN CONTAINER -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 flex-grow w-full">
+
+        <!-- ========================================================= -->
+        <!-- TAB 1: LESSON & GUIDANCE (Хичээл & Зөвлөмж) -->
+        <!-- ========================================================= -->
+        <section id="tab-lesson" class="tab-content block space-y-8">
+            <!-- Hero Banner -->
+            <div class="relative overflow-hidden rounded-3xl bg-gradient-to-r from-sky-600 via-indigo-600 to-purple-600 p-6 sm:p-10 text-white shadow-xl">
+                <div class="relative z-10 max-w-3xl space-y-4">
+                    <span class="bg-amber-400 text-slate-950 font-black text-xs px-3.5 py-1.5 rounded-full uppercase tracking-wider inline-block shadow-sm">
+                        ✨ Сэдэв: Зорилго ба Төлөвлөлт
+                    </span>
+                    <h2 class="text-2xl sm:text-4xl font-black leading-tight">
+                        "Мөрөөдөл бол далавч, Төлөвлөгөө бол түүнийг хөөргөх хөдөлгүүр юм."
+                    </h2>
+                    <p class="text-sky-100 text-xs sm:text-sm leading-relaxed">
+                        Хүсэл мөрөөдөлтэй байх нь маш сайхан. Гэвч зөвхөн мөрөөдөөд суулгүйгээр түүнийг <strong>ТОДОРХОЙ ЗОРИЛГО</strong> болгон хувиргаж, <strong>ХУГАЦААТАЙ АЛХМУУДAАР</strong> төлөвлөсөн хүн л мөрөөдөлдөө хүрдэг!
+                    </p>
+                    <div class="pt-2 flex flex-wrap gap-3">
+                        <button onclick="switchTab('builder')" class="bg-white text-sky-900 hover:bg-sky-50 font-extrabold text-xs sm:text-sm px-5 py-2.5 rounded-xl transition shadow border border-white/20">
+                            🎯 Зорилгоо одоо төлөвлөх
+                        </button>
+                        <button onclick="switchTab('game')" class="bg-sky-500/40 hover:bg-sky-500/60 text-white font-bold text-xs sm:text-sm px-5 py-2.5 rounded-xl backdrop-blur-md transition border border-white/20">
+                            🎮 Тоглоомоор суралцах
+                        </button>
+                    </div>
+                </div>
+                <div class="absolute -right-10 -bottom-10 opacity-10 text-[200px] font-black pointer-events-none select-none">
+                    🎯
+                </div>
+            </div>
+
+            <!-- Key Concepts Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- Concept 1: Dream vs Goal -->
+                <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm space-y-4 card-hover">
+                    <div class="flex items-center space-x-3">
+                        <div class="w-12 h-12 bg-amber-100 text-amber-700 rounded-xl flex items-center justify-center text-2xl font-bold">
+                            💭
+                        </div>
+                        <div>
+                            <h3 class="font-extrabold text-slate-900 text-lg">1. Мөрөөдөл ба Зорилгын ялгаа</h3>
+                            <p class="text-xs text-slate-500">Яагаад зүгээр хүсэх нь хангалтгүй вэ?</p>
+                        </div>
+                    </div>
+
+                    <div class="space-y-3 text-xs">
+                        <div class="p-3 bg-amber-50 rounded-xl border border-amber-200 text-amber-900">
+                            <strong class="block font-bold">✨ Мөрөөдөл (Dream):</strong>
+                            "Би англи хэлээр сайн ярьдаг болмоор байна" (Тодорхойгүй, хугацаагүй, хийх алхам нь тодорхойгүй).
+                        </div>
+                        <div class="p-3 bg-emerald-50 rounded-xl border border-emerald-200 text-emerald-900">
+                            <strong class="block font-bold">🎯 Зорилго (Goal):</strong>
+                            "Би ирэх 3 сарын дотор өдөр бүр 10 шинэ үг цээжилж, Англи хэлний олимпиадад 85+ оноо авна" (Тодорхой, хугацаатай, хэмжигдэхүйц).
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Concept 2: SMART Goal Rule -->
+                <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm space-y-4 card-hover">
+                    <div class="flex items-center space-x-3">
+                        <div class="w-12 h-12 bg-sky-100 text-sky-700 rounded-xl flex items-center justify-center text-2xl font-bold">
+                            🧩
+                        </div>
+                        <div>
+                            <h3 class="font-extrabold text-slate-900 text-lg">2. SMART Төлөвлөлтийн Дүрэм</h3>
+                            <p class="text-xs text-slate-500">Ухаалаг зорилго тодорхойлох 5 түлхүүр</p>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-[11px]">
+                        <div class="p-2.5 bg-slate-50 rounded-lg border border-slate-200">
+                            <span class="font-black text-sky-600 block">S - Specific (Тодорхой)</span>
+                            Яг юу хийхээ тодорхой бичих.
+                        </div>
+                        <div class="p-2.5 bg-slate-50 rounded-lg border border-slate-200">
+                            <span class="font-black text-sky-600 block">M - Measurable (Хэмжигдэхүйц)</span>
+                            Хэдэн хуудас, ямар оноо гэх мэт тоотой.
+                        </div>
+                        <div class="p-2.5 bg-slate-50 rounded-lg border border-slate-200">
+                            <span class="font-black text-sky-600 block">A - Achievable (Хүрч болохуйц)</span>
+                            Бодитой, хэт ахадна уу үгүй юу.
+                        </div>
+                        <div class="p-2.5 bg-slate-50 rounded-lg border border-slate-200">
+                            <span class="font-black text-sky-600 block">R - Relevant (Чухал)</span>
+                            Миний мөрөөдөлтэй холбоотой юу.
+                        </div>
+                        <div class="p-2.5 bg-slate-50 rounded-lg border border-slate-200 sm:col-span-2">
+                            <span class="font-black text-sky-600 block">T - Time-bound (Хугацаатай)</span>
+                            Хэзээ эхэлж, хэзээ дуусах нь тодорхой байх.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Timeframe Horizon Explanation -->
+            <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm space-y-4">
+                <h3 class="text-lg font-black text-slate-900 flex items-center gap-2">
+                    <span>⏱️</span> <span>3. Хугацааны 3 Түвшин (Хэзээ биелэх вэ?)</span>
+                </h3>
+                <p class="text-xs text-slate-600">
+                    Том мөрөөдөлд хүрэхэд түүнийг жижиг хугацааны хэсгүүдэд хуваадаг. Энэ нь стрессгүйгээр ахиц гаргахад тусалдаг:
+                </p>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs">
+                    <div class="p-4 rounded-xl bg-emerald-50 border border-emerald-200 space-y-2">
+                        <div class="flex justify-between items-center">
+                            <span class="font-extrabold text-emerald-900">🟢 Ойрын Зорилго</span>
+                            <span class="text-[10px] bg-emerald-200 text-emerald-900 font-bold px-2 py-0.5 rounded">1 - 3 сар</span>
+                        </div>
+                        <p class="text-slate-600">Өдөр тутам болон долоо хоног бүр хийх жижиг дадал, даалгаврууд.</p>
+                        <p class="italic text-[11px] text-emerald-800">Жишээ: Ирэх сард 2 ном унших, өдөр бүр 20 мин дасгал хийх.</p>
+                    </div>
+
+                    <div class="p-4 rounded-xl bg-sky-50 border border-sky-200 space-y-2">
+                        <div class="flex justify-between items-center">
+                            <span class="font-extrabold text-sky-900">🔵 Дунд Хугацааны</span>
+                            <span class="text-[10px] bg-sky-200 text-sky-900 font-bold px-2 py-0.5 rounded">6 - 12 сар</span>
+                        </div>
+                        <p class="text-slate-600">Ойрын зорилгуудын нийлбэрээр биелэх томоохон үр дүнгүүд.</p>
+                        <p class="italic text-[11px] text-sky-800">Жишээ: Хичээлийн жилийн эцэст бүх хичээлээр "А" үнэлгээ авах.</p>
+                    </div>
+
+                    <div class="p-4 rounded-xl bg-purple-50 border border-purple-200 space-y-2">
+                        <div class="flex justify-between items-center">
+                            <span class="font-extrabold text-purple-900">🟣 Алсын Хараа</span>
+                            <span class="text-[10px] bg-purple-200 text-purple-900 font-bold px-2 py-0.5 rounded">1 - 5 жил</span>
+                        </div>
+                        <p class="text-slate-600">Ирээдүйд хэн болох, ямар том амжилтад хүрэх мөрөөдлийн цэг.</p>
+                        <p class="italic text-[11px] text-purple-800">Жишээ: IT инженер болох, Гадаадын тэтгэлэгт сургуульд орох.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========================================================= -->
+        <!-- TAB 2: GOAL BUILDER STUDIO (Зорилго Бүтээх) -->
+        <!-- ========================================================= -->
+        <section id="tab-builder" class="tab-content hidden space-y-6">
+            <div class="bg-white p-6 sm:p-8 rounded-2xl shadow-sm border border-slate-200 space-y-6">
+                <div>
+                    <span class="bg-sky-100 text-sky-800 font-bold text-xs px-3 py-1 rounded-full uppercase">Дадлага ажил</span>
+                    <h2 class="text-2xl font-black text-slate-900 mt-1">Миний Мөрөөдөл ба Зорилго Бүтээгч</h2>
+                    <p class="text-xs text-slate-600 mt-1">
+                        Өөрийн мөрөөдлөө тодорхойлоод, түүнд хүрэх алхмуудыг хугацаатай нь төлөвлөөрэй!
+                    </p>
+                </div>
+
+                <form id="goal-form" onsubmit="saveCustomGoal(event)" class="space-y-6 text-xs">
+                    <!-- Step 1: Dream & Goal Title -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div class="space-y-1.5">
+                            <label class="font-extrabold text-slate-800 block">1. Таны хүсэл мөрөөдөл юу вэ? 💭</label>
+                            <input type="text" id="form-dream" required placeholder="Дэлхийн шилдэг програмч болох, Спортын аварга болох..." class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 focus:ring-2 focus:ring-sky-500 focus:outline-none">
+                        </div>
+
+                        <div class="space-y-1.5">
+                            <label class="font-extrabold text-slate-800 block">2. SMART Зорилгын нэр (Тодорхой) 🎯</label>
+                            <input type="text" id="form-title" required placeholder="Ирэх 6 сард Python хэл сурч, бие даан тоглоом хийж сурах" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 focus:ring-2 focus:ring-sky-500 focus:outline-none">
+                        </div>
+                    </div>
+
+                    <!-- Category & Deadline -->
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                        <div class="space-y-1.5">
+                            <label class="font-bold text-slate-700 block">Англилал:</label>
+                            <select id="form-category" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 focus:ring-2 focus:ring-sky-500 focus:outline-none">
+                                <option value="🎓 Хичээл & Сураглал">🎓 Хичээл & Сураглал</option>
+                                <option value="⚽ Спорт & Эрүүл мэнд">⚽ Спорт & Эрүүл мэнд</option>
+                                <option value="🎨 Авьяас & Сонирхол">🎨 Авьяас & Сонирхол</option>
+                                <option value="💡 Хувь хүний хөгжил">💡 Хувь хүний хөгжил</option>
+                            </select>
+                        </div>
+
+                        <div class="space-y-1.5">
+                            <label class="font-bold text-slate-700 block">Төлөвлөсөн хугацаа (Хэдий хугацаанд?):</label>
+                            <select id="form-timeframe" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 focus:ring-2 focus:ring-sky-500 focus:outline-none">
+                                <option value="Ойрын зорилго (1-3 сар)">🟢 Ойрын зорилго (1-3 сар)</option>
+                                <option value="Дунд хугацааны (6 сар)">🔵 Дунд хугацааны (6 сар)</option>
+                                <option value="Алсын хараа (1+ жил)">🟣 Алсын хараа (1+ жил)</option>
+                            </select>
+                        </div>
+
+                        <div class="space-y-1.5">
+                            <label class="font-bold text-slate-700 block">Биелэх дуусах огноо:</label>
+                            <input type="date" id="form-target-date" required class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 focus:ring-2 focus:ring-sky-500 focus:outline-none">
+                        </div>
+                    </div>
+
+                    <hr class="border-slate-200">
+
+                    <!-- Sub-tasks / Milestones -->
+                    <div class="space-y-3">
+                        <div class="flex justify-between items-center">
+                            <label class="font-extrabold text-slate-800 text-sm">3. Зорилгодоо хүрэхийн тулд хийх АЛХМУУД (Алхам бүрийг төлөвлө):</label>
+                            <button type="button" onclick="addMilestoneInput()" class="text-xs bg-sky-50 text-sky-700 hover:bg-sky-100 font-bold px-3 py-1.5 rounded-lg border border-sky-200 transition">
+                                + Алхам нэмэх
+                            </button>
+                        </div>
+
+                        <div id="milestones-container" class="space-y-2.5">
+                            <!-- Dynamic inputs added here -->
+                        </div>
+                    </div>
+
+                    <!-- Obstacles & Motivation -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div class="space-y-1.5">
+                            <label class="font-bold text-slate-700 block">4. Тохиолдож болох саад бэрхшээл & Цагийн хулгайч:</label>
+                            <input type="text" id="form-obstacle" placeholder="Утас их үзэх, залхуурах, цагаа буруу хуваарилах..." class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 focus:ring-2 focus:ring-sky-500 focus:outline-none">
+                        </div>
+                        <div class="space-y-1.5">
+                            <label class="font-bold text-slate-700 block">5. Шийдэл & Урам зориг:</label>
+                            <input type="text" id="form-solution" placeholder="Утсаа унтрааж хичээлээ хийх, өдөр бүр 30 минут заавал зориулах..." class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 focus:ring-2 focus:ring-sky-500 focus:outline-none">
+                        </div>
+                    </div>
+
+                    <!-- Submit Button -->
+                    <div class="pt-2">
+                        <button type="submit" class="w-full bg-sky-600 hover:bg-sky-700 text-white font-extrabold py-3.5 rounded-xl transition shadow-md text-sm flex items-center justify-center space-x-2">
+                            <span>🚀 Төлөвлөгөөг баталгаажуулж, Самбарт нэмэх</span>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </section>
+
+        <!-- ========================================================= -->
+        <!-- TAB 3: PLANNING GAME (Зорилгын замаар тоглоом) -->
+        <!-- ========================================================= -->
+        <section id="tab-game" class="tab-content hidden space-y-6">
+            <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm text-center max-w-3xl mx-auto space-y-4">
+                <span class="bg-purple-100 text-purple-800 font-bold text-xs px-3 py-1 rounded-full uppercase">Логик Тоглоом</span>
+                <h2 class="text-2xl font-black text-slate-900">🎮 "Зорилгын замаар" Төлөвлөлтийн Даалгавар</h2>
+                <p class="text-xs text-slate-600">
+                    Өгөгдсөн зорилгод хүрэхийн тулд хийх ажлуудыг <strong>зөв цаг хугацааны дараалалд</strong> оруулж, зорилгоо биелүүлээрэй!
+                </p>
+
+                <!-- Game Stats Bar -->
+                <div class="flex justify-center items-center gap-6 py-2.5 px-4 bg-slate-50 rounded-xl max-w-md mx-auto text-xs font-semibold border border-slate-200">
+                    <div>🎯 Үе: <span id="game-level-indicator" class="text-sky-600 font-extrabold">1 / 3</span></div>
+                    <div>⭐ Оноо: <span id="game-score" class="text-emerald-600 font-extrabold">0</span></div>
+                    <div>🔥 Дараалсан: <span id="game-streak" class="text-amber-500 font-extrabold">0</span></div>
+                </div>
+            </div>
+
+            <!-- Main Game Container -->
+            <div class="max-w-3xl mx-auto bg-white p-6 sm:p-8 rounded-2xl border border-slate-200 shadow-sm space-y-6">
+                <!-- Current Level Scenario Card -->
+                <div id="game-scenario-card" class="bg-gradient-to-r from-sky-50 to-indigo-50 p-5 rounded-xl border border-sky-200 space-y-2">
+                    <span id="game-level-tag" class="bg-sky-600 text-white text-[10px] font-bold px-2.5 py-0.5 rounded-full uppercase">Үе 1</span>
+                    <h3 id="game-goal-title" class="text-base sm:text-lg font-black text-sky-950">
+                        Зорилго: "Ирэх 3 сарын дотор бие даан 5 ном уншиж дуусгах"
+                    </h3>
+                    <p id="game-goal-desc" class="text-xs text-slate-600">
+                        Энэхүү зорилгодоо хүрэхийн тулд дараах 4 алхмыг цаг хугацааны хувьд ЭХЭНДЭЭС НЬ ТӨГСГӨЛ ХҮРТЭЛ нь зөв дараалалд оруулан сонгоно уу.
+                    </p>
+                </div>
+
+                <!-- Steps Selection Area -->
+                <div class="space-y-3">
+                    <h4 class="text-xs font-bold text-slate-700 flex justify-between items-center">
+                        <span>Алхмуудыг дарааллаар нь даран сонгоно уу:</span>
+                        <span class="text-[11px] text-slate-400 font-normal">(1-ээс 4 хүртэлх дараалал)</span>
+                    </h4>
+
+                    <!-- Scrambled Buttons Container -->
+                    <div id="game-options-container" class="grid grid-cols-1 gap-2.5">
+                        <!-- Dynamic generated -->
+                    </div>
+                </div>
+
+                <!-- Selected Sequence Preview -->
+                <div class="bg-slate-50 p-4 rounded-xl border border-slate-200 space-y-2">
+                    <span class="text-[11px] font-bold text-slate-500 uppercase block">Таны сонгосон төлөвлөгөөний дараалал:</span>
+                    <div id="game-selected-sequence" class="space-y-1.5 min-h-[60px] flex flex-col justify-center">
+                        <span class="text-xs text-slate-400 italic text-center">Дээрх алхмууд дээр дарж төлөвлөгөөгөө өрнүүлнэ үү...</span>
+                    </div>
+                </div>
+
+                <!-- Action Controls -->
+                <div class="flex justify-between items-center pt-2">
+                    <button onclick="resetCurrentGameLevel()" class="px-4 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold text-xs rounded-xl transition">
+                        🔄 Дахин эхлэх
+                    </button>
+                    <button id="game-submit-btn" onclick="checkGameSequence()" disabled class="px-6 py-2.5 bg-sky-600 hover:bg-sky-700 disabled:opacity-50 text-white font-extrabold text-xs rounded-xl shadow transition">
+                        ✅ Төлөвлөгөөг шалгах
+                    </button>
+                </div>
+
+                <!-- Feedback Banner -->
+                <div id="game-feedback" class="hidden p-4 rounded-xl text-xs font-bold space-y-2">
+                </div>
+            </div>
+        </section>
+
+        <!-- ========================================================= -->
+        <!-- TAB 4: MY GOAL BOARD & ROADMAP (Миний Самбар) -->
+        <!-- ========================================================= -->
+        <section id="tab-board" class="tab-content hidden space-y-6">
+            <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 bg-white p-6 rounded-2xl border border-slate-200 shadow-sm">
+                <div>
+                    <span class="bg-emerald-100 text-emerald-800 font-bold text-xs px-3 py-1 rounded-full uppercase">Замын Зураглал</span>
+                    <h2 class="text-2xl font-black text-slate-900 mt-1">Миний Төлөвлөгөөний Самбар</h2>
+                    <p class="text-xs text-slate-600">
+                        Таны тодорхойлсон зорилгууд болон тэдгээрийн биелэлтийн явц.
+                    </p>
+                </div>
+                <div class="flex gap-2 w-full sm:w-auto">
+                    <button onclick="switchTab('builder')" class="flex-grow sm:flex-grow-0 bg-sky-600 hover:bg-sky-700 text-white font-bold text-xs px-4 py-2.5 rounded-xl transition shadow">
+                        + Шинэ Зорилго Нэмэх
+                    </button>
+                    <button onclick="window.print()" class="bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold text-xs px-4 py-2.5 rounded-xl transition">
+                        🖨️ Хэвлэх
+                    </button>
+                </div>
+            </div>
+
+            <!-- Goals Roadmap List Container -->
+            <div id="goals-list-container" class="space-y-6">
+                <!-- Dynamic goals inserted here -->
+            </div>
+        </section>
+
+        <!-- ========================================================= -->
+        <!-- TAB 5: QUIZ & CERTIFICATE (Асуулт хариулт & Батламж) -->
+        <!-- ========================================================= -->
+        <section id="tab-quiz" class="tab-content hidden space-y-6">
+            <div class="max-w-3xl mx-auto space-y-6">
+                <!-- Quiz Container -->
+                <div id="quiz-box" class="bg-white p-6 sm:p-8 rounded-2xl shadow-sm border border-slate-200 space-y-6">
+                    <div class="flex items-center justify-between border-b pb-4">
+                        <div>
+                            <span class="text-xs font-bold text-sky-600 uppercase tracking-wider">Мэдлэг шалгах сорил</span>
+                            <h2 class="text-xl font-black text-slate-900">Төлөвлөлтийн ур чадварын тест</h2>
+                        </div>
+                        <div class="text-right">
+                            <span id="quiz-progress" class="text-xs font-bold text-slate-400">Асуулт 1 / 5</span>
+                        </div>
+                    </div>
+
+                    <!-- Question text -->
+                    <div class="space-y-2">
+                        <h3 id="quiz-question-text" class="text-base sm:text-lg font-bold text-slate-800">
+                            Асуулт уншиж байна...
+                        </h3>
+                    </div>
+
+                    <!-- Answers Grid -->
+                    <div id="quiz-options" class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                        <!-- Dynamic options -->
+                    </div>
+
+                    <!-- Feedback msg -->
+                    <div id="quiz-feedback" class="hidden p-3.5 rounded-xl text-xs font-bold"></div>
+
+                    <!-- Next button -->
+                    <div class="flex justify-end pt-2">
+                        <button id="quiz-next-btn" onclick="nextQuizQuestion()" class="hidden bg-sky-600 hover:bg-sky-700 text-white font-bold px-6 py-2.5 rounded-xl text-xs transition shadow">
+                            Дараагийн асуулт ➔
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Certificate Box -->
+                <div id="certificate-box" class="hidden bg-white p-8 rounded-3xl shadow-xl border-4 border-sky-100 text-center space-y-6 relative overflow-hidden">
+                    <div class="inline-block p-3 bg-amber-100 text-amber-700 rounded-2xl text-4xl shadow-inner">
+                        🎖️
+                    </div>
+
+                    <div class="space-y-2">
+                        <span class="text-xs font-extrabold text-sky-600 tracking-widest uppercase block">БАТЛАМЖ ЖУОМ</span>
+                        <h2 class="text-2xl sm:text-3xl font-black text-slate-900">"ИРЭЭДҮЙН ТӨЛӨВЛӨГЧ МАСТЕР" СЕРТИФИКАТ</h2>
+                        <p class="text-xs text-slate-500 max-w-md mx-auto">
+                            Та зорилгоо SMART зарчмаар тодорхойлж, хийх ажлаа хугацаатайгаар төлөвлөх хичээлийг амжилттай дүүргэлээ!
+                        </p>
+                    </div>
+
+                    <div class="max-w-md mx-auto bg-slate-50 p-4 rounded-2xl border border-slate-200 space-y-2 text-xs">
+                        <label class="block font-bold text-slate-700 text-left">Сурагчийн нэр:</label>
+                        <input type="text" id="cert-student-name" placeholder="Өөрийн нэрийг бичээрэй..." class="w-full px-3.5 py-2 rounded-xl border text-sm font-bold border-slate-300 text-center focus:ring-2 focus:ring-sky-500 focus:outline-none" oninput="updateCertName()">
+                    </div>
+
+                    <!-- Certificate Printable Display Area -->
+                    <div class="p-6 bg-gradient-to-b from-sky-50 via-indigo-50 to-amber-50 border-2 border-dashed border-sky-300 rounded-2xl max-w-lg mx-auto space-y-3 text-slate-800 shadow-inner">
+                        <div class="text-xs text-sky-800 font-semibold uppercase tracking-wider">Энэхүү батламжийг</div>
+                        <div id="cert-display-name" class="text-2xl font-black text-indigo-900 border-b-2 border-indigo-300 pb-1 inline-block px-6">
+                            [ Сурагчийн нэр ]
+                        </div>
+                        <p class="text-[11px] text-slate-600 italic leading-relaxed">
+                            Хүсэл мөрөөдлөө зорилго болгон төлөвлөж, цагаа зөв хуваарилах шалгалтад <span id="cert-score-display" class="font-bold text-emerald-600">100%</span> оноо авч амжилттай оролцсоныг батлав.
+                        </p>
+                        <div class="flex justify-between items-center text-[10px] text-slate-400 pt-2 border-t border-sky-200/60">
+                            <span>📅 Огноо: <span id="cert-date">2026.10.23</span></span>
+                            <span>🏫 Сургалтын хөтөлбөр</span>
+                        </div>
+                    </div>
+
+                    <div class="flex justify-center gap-3">
+                        <button onclick="window.print()" class="bg-sky-600 hover:bg-sky-700 text-white font-bold text-xs px-5 py-2.5 rounded-xl shadow transition">
+                            🖨️ Сертификат хэвлэх / Хадгалах
+                        </button>
+                        <button onclick="restartQuiz()" class="bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold text-xs px-5 py-2.5 rounded-xl transition">
+                            🔄 Шалгалтыг дахин өгөх
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-slate-900 text-slate-400 text-xs py-6 border-t border-slate-800 mt-12">
+        <div class="max-w-7xl mx-auto px-4 text-center space-y-2">
+            <p class="font-medium">"Хийх ажлаа төлөвлөе" - Сурагчдын амьдрах ухаан, цаг төлөвлөлтийн интерактив хичээл</p>
+            <p class="text-[11px] text-slate-500">Зорилгодоо хүрэх хамгийн эхний алхам бол өнөөдрийн төлөвлөгөө юм.</p>
+        </div>
+    </footer>
+
+    <!-- JAVASCRIPT LOGIC -->
+    <script>
+        // Web Audio API Sound Effects Engine
+        const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        
+        function playSound(type) {
+            if (audioCtx.state === 'suspended') {
+                audioCtx.resume();
+            }
+            const osc = audioCtx.createOscillator();
+            const gain = audioCtx.createGain();
+            osc.connect(gain);
+            gain.connect(audioCtx.destination);
+
+            const now = audioCtx.currentTime;
+
+            if (type === 'click') {
+                osc.type = 'sine';
+                osc.frequency.setValueAtTime(587.33, now); // D5
+                gain.gain.setValueAtTime(0.04, now);
+                gain.gain.exponentialRampToValueAtTime(0.001, now + 0.04);
+                osc.start(now);
+                osc.stop(now + 0.04);
+            } else if (type === 'correct') {
+                osc.type = 'triangle';
+                osc.frequency.setValueAtTime(523.25, now); // C5
+                osc.frequency.setValueAtTime(659.25, now + 0.08); // E5
+                osc.frequency.setValueAtTime(783.99, now + 0.16); // G5
+                gain.gain.setValueAtTime(0.08, now);
+                gain.gain.exponentialRampToValueAtTime(0.001, now + 0.3);
+                osc.start(now);
+                osc.stop(now + 0.3);
+            } else if (type === 'wrong') {
+                osc.type = 'sawtooth';
+                osc.frequency.setValueAtTime(220, now);
+                osc.frequency.setValueAtTime(180, now + 0.08);
+                gain.gain.setValueAtTime(0.08, now);
+                gain.gain.exponentialRampToValueAtTime(0.001, now + 0.22);
+                osc.start(now);
+                osc.stop(now + 0.22);
+            } else if (type === 'win') {
+                osc.type = 'sine';
+                osc.frequency.setValueAtTime(523.25, now);
+                osc.frequency.setValueAtTime(659.25, now + 0.1);
+                osc.frequency.setValueAtTime(783.99, now + 0.2);
+                osc.frequency.setValueAtTime(1046.50, now + 0.3);
+                gain.gain.setValueAtTime(0.1, now);
+                gain.gain.exponentialRampToValueAtTime(0.001, now + 0.5);
+                osc.start(now);
+                osc.stop(now + 0.5);
+            }
+        }
+
+        // INITIAL USER GOALS STATE
+        let userGoals = [
+            {
+                id: 'goal-demo-1',
+                dream: 'Дэлхийд өрсөлдөх програмч болох',
+                title: 'Ирэх 3 сард Компьютерын үндсийг сурч, тоглоом бүтээх',
+                category: '🎓 Хичээл & Сураглал',
+                timeframe: 'Ойрын зорилго (1-3 сар)',
+                targetDate: '2026-12-31',
+                obstacle: 'Утас тоглох, сошиал медиад цаг үрэх',
+                solution: 'Өдөр бүр хичээлээ дуусгаад 45 минут кодинг хийх',
+                milestones: [
+                    { id: 'm1', text: 'Компьютерын логик ба алгоритмын ухагдагдахууныг ойлгох', completed: true },
+                    { id: 'm2', text: 'HTML & JavaScript-ийн анхан шатны мэдлэгтэй болох', completed: true },
+                    { id: 'm3', text: 'Анхны интерактив мини тоглоомоо хийж дуусгах', completed: false },
+                    { id: 'm4', text: 'Найзууд болон багшдаа төслөө танилцуулж, зөвлөгөө авах', completed: false }
+                ]
+            }
+        ];
+
+        // GAME LEVELS DATABASE
+        const GAME_LEVELS = [
+            {
+                level: 1,
+                goalTitle: 'Ирэх 3 сарын дотор бие даан 5 ном уншиж дуусгах',
+                desc: 'Энэхүү зорилгодоо хүрэхийн тулд хийх ажлуудыг цаг хугацааны зөв дараалалд оруулна уу.',
+                correctOrder: [
+                    'Уншихыг хүссэн 5 номынхоо жагсаалтыг гаргаж, номын сангаас авах (1 дэх долоо хоног)',
+                    'Өдөр бүр унтахын өмнө 20 хуудас ном унших цагийн хуваарь зохиох (Өдөр бүр)',
+                    'Ном бүрийн дараа тэмдэглэл хөтөлж, гол санааг нь бичиж хэвших (Санаа цуглуулах)',
+                    '3 сарын эцэст уншсан номынхоо тухай найзууддаа ярьж өгөх (Төгсгөлд нь)'
+                ]
+            },
+            {
+                level: 2,
+                goalTitle: 'Математикийн улсын олимпиадад амжилттай оролцож медаль авах',
+                desc: 'Том тэмцээнд бэлтгэх төлөвлөгөөний алхмуудыг эхнээс нь дуустал зөв дараалалд оруулна уу.',
+                correctOrder: [
+                    'Өөрийн сул сэдвүүдийг тодорхойлж, багшаасаа сургалтын төлөвлөгөө авах (Эхний 2 долоо хоног)',
+                    'Өдөр бүр 5 ахисан түвшний бодлого бие даан бодож дадлагажих (1-2 дахь сар)',
+                    'Өмнөх жилүүдийн олимпиадын сорилуудыг цаг заан ажиллах (3 дахь сар)',
+                    'Сэтгэл зүй болон биеэ бэлтгэж, олимпиадад анхаарлаа төвлөрүүлэн оролцох (Шийдвэрлэх өдөр)'
+                ]
+            },
+            {
+                level: 3,
+                goalTitle: 'Сургуулийн сагсан бөмбөгийн шигшээ багт сонгогдон орох',
+                desc: 'Спортын амжилтад хүрэх төлөвлөгөөний дарааллыг зөв өрнүүлнэ үү.',
+                correctOrder: [
+                    'Дасгалжуулагч багштай уулзаж, багт ороход ямар чадвар шаардлагатайг асуух (Эхэнд нь)',
+                    'Өдөр бүр өглөө 30 минут шидэлт болон бөмбөг залах дасгал сургуулилт хийх (Идэвхтэй үе)',
+                    'Сургуулийн бэлтгэл тоглолтуудад идэвхтэй оролцож, багийн тоглолтоо сайжруулах (Дунд үе)',
+                    'Сонгон шалгаруулалтын тэмцээнд бүх чадвар, урам зоригоо дайчлан тоглох (Төгсгөл)'
+                ]
+            }
+        ];
+
+        // QUIZ QUESTIONS DATABASE
+        const QUIZ_QUESTIONS = [
+            {
+                question: "Зорилгын SMART зарчмын 'T' үсэг юуг илэрхийлдэг вэ?",
+                options: [
+                    "Time-bound (Хугацаатай байх)",
+                    "Talented (Авьяастай байх)",
+                    "Try-again (Дахин турших)",
+                    "Task-force (Багаар ажиллах)"
+                ],
+                correct: 0,
+                explanation: "T буюу Time-bound нь зорилго хэзээ эхэлж, хэзээ дуусах тодорхой цаг хугацаатай байх ёстойг заадаг."
+            },
+            {
+                question: "'Мөрөөдөл' ба 'Зорилго'-ын хамгийн том ялгаа юу вэ?",
+                options: [
+                    "Мөрөөдөл нь мөнгөтэй холбоотой байдаг",
+                    "Зорилго нь тодорхой, хэмжигдэхүйц, хугацаатай төлөвлөгөөтэй байдаг",
+                    "Мөрөөдлийг хэзээ ч биелүүлж болохгүй",
+                    "Зорилгыг зөвхөн том хүмүүс тавьдаг"
+                ],
+                correct: 1,
+                explanation: "Зорилго нь мөрөөдлөөсөө ялгаатай нь тодорхой үйл ажиллагааны алхам болон хугацаатай байдаг."
+            },
+            {
+                question: "1-ээс 3 сарын хугацаанд биелүүлэхээр төлөвлөсөн зорилгыг юу гэх вэ?",
+                options: [
+                    "Алсын хараа",
+                    "Ойрын зорилго",
+                    "Өдрийн тэмдэглэл",
+                    "Дунд хугацааны зорилго"
+                ],
+                correct: 1,
+                explanation: "1-3 сарын хугацаатай зорилго нь богино хугацааны буюу Ойрын зорилгод хамаарна."
+            },
+            {
+                question: "Зорилгодоо хүрэх замд 'Цагийн хулгайч' гэж юуг хэлэх вэ?",
+                options: [
+                    "Хичээлээ хийх, ном унших",
+                    "Сошиал медиад хэт их цаг үрэх, залхуурах, хойшлуулах",
+                    "Өглөө эрт босох",
+                    "Багшаас тусламж хүсэх"
+                ],
+                correct: 1,
+                explanation: "Залхуурах, сошиал медиад цаг дэд үрэх нь бидний зорилгодоо хүрэх цагийг болон анхаарлыг хулгайлдаг."
+            },
+            {
+                question: "Том зорилгыг биелүүлэхийн тулд яах хэрэгтэй вэ?",
+                options: [
+                    "Ганцхан өдөрт бүх зүйлийг амжуулах гэж зүтгэх",
+                    "Жижиг алхмуудад (микро зорилгуудад) хувааж, өдөр бүр бага багаар хийх",
+                    "Бусад хүмүүс хийж өгөхийг хүлээх",
+                    "Шууд хэцүү хэсгээс нь эхлээд шантрах"
+                ],
+                correct: 1,
+                explanation: "Том зорилгыг жижиг алхмуудад хувааж, өдөр бүр тушралтайгаар алхам алхмаар урагшлах нь амжилтын түлхүүр юм."
+            }
+        ];
+
+        // GLOBAL STATE
+        let currentGameLevelIndex = 0;
+        let currentGameScore = 0;
+        let currentGameStreak = 0;
+        let currentSelectedGameOrder = [];
+        let shuffledCurrentLevelSteps = [];
+
+        let currentQuizIndex = 0;
+        let quizScore = 0;
+
+        // INITIALIZATION
+        window.onload = function() {
+            initMilestoneInputs();
+            renderGoalsBoard();
+            loadGameLevel(0);
+            startQuiz();
+        };
+
+        // TAB NAVIGATION
+        function switchTab(tabId) {
+            playSound('click');
+            document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.classList.remove('bg-white', 'text-sky-900', 'shadow', 'font-bold');
+                btn.classList.add('text-white', 'hover:bg-white/15');
+            });
+
+            document.getElementById(`tab-${tabId}`).classList.remove('hidden');
+            const activeNav = document.getElementById(`nav-${tabId}`);
+            if (activeNav) {
+                activeNav.classList.add('bg-white', 'text-sky-900', 'shadow', 'font-bold');
+                activeNav.classList.remove('text-white', 'hover:bg-white/15');
+            }
+        }
+
+        // =========================================================
+        // GOAL BUILDER FORM LOGIC
+        // =========================================================
+        function initMilestoneInputs() {
+            const container = document.getElementById('milestones-container');
+            container.innerHTML = '';
+            // Add 3 initial milestone inputs
+            addMilestoneInput('1-р долоо хоногт хийх алхам...');
+            addMilestoneInput('2-р долоо хоногт хийх алхам...');
+            addMilestoneInput('Дунд үед хийж дуусгах алхам...');
+        }
+
+        function addMilestoneInput(placeholderText) {
+            playSound('click');
+            const container = document.getElementById('milestones-container');
+            const count = container.children.length + 1;
+            
+            const div = document.createElement('div');
+            div.className = "flex items-center gap-2 animate-fade-in";
+            div.innerHTML = `
+                <span class="w-6 h-6 rounded-full bg-sky-100 text-sky-700 font-extrabold flex items-center justify-center text-[10px] flex-shrink-0">${count}</span>
+                <input type="text" required placeholder="${placeholderText || count + '-р алхмын тодорхойлолт...'}" class="milestone-input flex-grow px-3.5 py-2 rounded-xl border border-slate-300 focus:ring-2 focus:ring-sky-500 focus:outline-none">
+                ${count > 2 ? `<button type="button" onclick="this.parentElement.remove()" class="text-rose-500 hover:text-rose-700 font-bold px-2">✕</button>` : ''}
+            `;
+            container.appendChild(div);
+        }
+
+        function saveCustomGoal(e) {
+            e.preventDefault();
+            playSound('correct');
+
+            const dream = document.getElementById('form-dream').value;
+            const title = document.getElementById('form-title').value;
+            const category = document.getElementById('form-category').value;
+            const timeframe = document.getElementById('form-timeframe').value;
+            const targetDate = document.getElementById('form-target-date').value;
+            const obstacle = document.getElementById('form-obstacle').value;
+            const solution = document.getElementById('form-solution').value;
+
+            const milestoneInputs = document.querySelectorAll('.milestone-input');
+            const milestones = [];
+            milestoneInputs.forEach((inp, idx) => {
+                if (inp.value.trim() !== '') {
+                    milestones.push({
+                        id: 'm-' + Date.now() + '-' + idx,
+                        text: inp.value.trim(),
+                        completed: false
+                    });
+                }
+            });
+
+            const newGoal = {
+                id: 'goal-' + Date.now(),
+                dream,
+                title,
+                category,
+                timeframe,
+                targetDate,
+                obstacle,
+                solution,
+                milestones
+            };
+
+            userGoals.unshift(newGoal);
+            renderGoalsBoard();
+            
+            // Reset form
+            document.getElementById('goal-form').reset();
+            initMilestoneInputs();
+
+            // Switch to board tab
+            switchTab('board');
+        }
+
+        // =========================================================
+        // MY GOAL BOARD LOGIC
+        // =========================================================
+        function renderGoalsBoard() {
+            const container = document.getElementById('goals-list-container');
+            container.innerHTML = '';
+
+            if (userGoals.length === 0) {
+                container.innerHTML = `
+                    <div class="bg-white p-8 rounded-2xl border border-slate-200 text-center space-y-3">
+                        <span class="text-4xl block">🎯</span>
+                        <h3 class="font-extrabold text-slate-800 text-sm">Танд одоогоор төлөвлөгөө байхгүй байна</h3>
+                        <p class="text-xs text-slate-500 max-w-sm mx-auto">"Зорилго Бүтээх" хэсэг рүү очиж анхны зорилго болон төлөвлөгөөгөө зохиож нэмээрэй!</p>
+                        <button onclick="switchTab('builder')" class="bg-sky-600 text-white font-bold text-xs px-4 py-2 rounded-xl">Зорилго нэмэх</button>
+                    </div>
+                `;
+                return;
+            }
+
+            userGoals.forEach(goal => {
+                const totalM = goal.milestones.length;
+                const completedM = goal.milestones.filter(m => m.completed).length;
+                const progressPct = totalM > 0 ? Math.round((completedM / totalM) * 100) : 0;
+
+                const card = document.createElement('div');
+                card.className = "bg-white p-6 rounded-2xl border border-slate-200 shadow-sm space-y-5 card-hover";
+                
+                card.innerHTML = `
+                    <!-- Header -->
+                    <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2 border-b pb-4">
+                        <div class="space-y-1">
+                            <div class="flex items-center space-x-2">
+                                <span class="bg-sky-100 text-sky-800 text-[10px] font-extrabold px-2.5 py-0.5 rounded-full">${goal.category}</span>
+                                <span class="bg-purple-100 text-purple-800 text-[10px] font-extrabold px-2.5 py-0.5 rounded-full">${goal.timeframe}</span>
+                            </div>
+                            <h3 class="text-base sm:text-lg font-black text-slate-900">${goal.title}</h3>
+                            <p class="text-xs text-amber-700 font-medium">💭 Мөрөөдөл: ${goal.dream}</p>
+                        </div>
+                        <div class="text-right flex-shrink-0">
+                            <span class="text-[10px] text-slate-400 block font-semibold uppercase">Дуусах хугацаа:</span>
+                            <span class="text-xs font-black text-slate-700 bg-slate-100 px-2.5 py-1 rounded-lg inline-block mt-0.5">📅 ${goal.targetDate}</span>
+                        </div>
+                    </div>
+
+                    <!-- Progress Bar -->
+                    <div class="space-y-1.5">
+                        <div class="flex justify-between items-center text-xs font-bold">
+                            <span class="text-slate-700">Төлөвлөгөөний биелэлт:</span>
+                            <span class="${progressPct === 100 ? 'text-emerald-600' : 'text-sky-600'} font-black">${progressPct}% (${completedM}/${totalM} алхам)</span>
+                        </div>
+                        <div class="w-full h-3 bg-slate-100 rounded-full overflow-hidden border border-slate-200">
+                            <div class="h-full ${progressPct === 100 ? 'bg-emerald-500' : 'bg-sky-500'} transition-all duration-500 rounded-full" style="width: ${progressPct}%"></div>
+                        </div>
+                    </div>
+
+                    <!-- Milestones Checklist -->
+                    <div class="space-y-2">
+                        <span class="text-xs font-extrabold text-slate-800 block">📌 Хийх ажлын алхмууд (Даран биелүүлсэнд тооцно уу):</span>
+                        <div class="grid grid-cols-1 gap-2 text-xs">
+                            ${goal.milestones.map(m => `
+                                <label class="flex items-center space-x-3 p-3 rounded-xl border ${m.completed ? 'bg-emerald-50/60 border-emerald-200 text-slate-500 line-through' : 'bg-slate-50 border-slate-200 text-slate-800 font-medium'} cursor-pointer hover:bg-sky-50/50 transition">
+                                    <input type="checkbox" ${m.completed ? 'checked' : ''} onchange="toggleMilestoneStatus('${goal.id}', '${m.id}')" class="w-4 h-4 rounded text-sky-600 focus:ring-sky-500">
+                                    <span>${m.text}</span>
+                                </label>
+                            `).join('')}
+                        </div>
+                    </div>
+
+                    <!-- Obstacles & Solutions Note -->
+                    ${(goal.obstacle || goal.solution) ? `
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-3 pt-2 text-[11px] border-t border-slate-100">
+                            <div class="p-2.5 bg-rose-50 text-rose-900 rounded-xl border border-rose-100">
+                                <strong>⚠️ Гарч болох саад:</strong> ${goal.obstacle || 'Байхгүй'}
+                            </div>
+                            <div class="p-2.5 bg-emerald-50 text-emerald-900 rounded-xl border border-emerald-100">
+                                <strong>💡 Миний шийдэл:</strong> ${goal.solution || 'Байхгүй'}
+                            </div>
+                        </div>
+                    ` : ''}
+
+                    <div class="flex justify-end pt-1">
+                        <button onclick="deleteGoal('${goal.id}')" class="text-xs text-rose-500 hover:text-rose-700 font-bold">
+                            🗑️ Энэ төлөвлөгөөг устгах
+                        </button>
+                    </div>
+                `;
+
+                container.appendChild(card);
+            });
+        }
+
+        function toggleMilestoneStatus(goalId, milestoneId) {
+            playSound('click');
+            const goal = userGoals.find(g => g.id === goalId);
+            if (goal) {
+                const milestone = goal.milestones.find(m => m.id === milestoneId);
+                if (milestone) {
+                    milestone.completed = !milestone.completed;
+                    if (milestone.completed) {
+                        playSound('correct');
+                    }
+                    renderGoalsBoard();
+                }
+            }
+        }
+
+        function deleteGoal(goalId) {
+            playSound('click');
+            userGoals = userGoals.filter(g => g.id !== goalId);
+            renderGoalsBoard();
+        }
+
+        // =========================================================
+        // PLANNING GAME LOGIC
+        // =========================================================
+        function loadGameLevel(levelIdx) {
+            currentGameLevelIndex = levelIdx;
+            const lvl = GAME_LEVELS[currentGameLevelIndex];
+
+            document.getElementById('game-level-indicator').innerText = `${lvl.level} / ${GAME_LEVELS.length}`;
+            document.getElementById('game-level-tag').innerText = `Үе ${lvl.level}`;
+            document.getElementById('game-goal-title').innerText = `Зорилго: "${lvl.goalTitle}"`;
+            document.getElementById('game-goal-desc').innerText = lvl.desc;
+
+            currentSelectedGameOrder = [];
+            
+            // Shuffle correct steps
+            shuffledCurrentLevelSteps = [...lvl.correctOrder].sort(() => 0.5 - Math.random());
+
+            renderGameOptions();
+            renderSelectedGameSequence();
+
+            document.getElementById('game-feedback').className = "hidden p-4 rounded-xl text-xs font-bold space-y-2";
+            document.getElementById('game-submit-btn').disabled = true;
+        }
+
+        function renderGameOptions() {
+            const container = document.getElementById('game-options-container');
+            container.innerHTML = '';
+
+            shuffledCurrentLevelSteps.forEach((stepText, idx) => {
+                const isSelected = currentSelectedGameOrder.includes(stepText);
+
+                const btn = document.createElement('button');
+                btn.disabled = isSelected;
+                btn.className = `p-3.5 text-left rounded-xl border text-xs font-bold transition flex items-center justify-between ${
+                    isSelected 
+                    ? 'bg-slate-100 text-slate-400 border-slate-200 cursor-not-allowed opacity-50' 
+                    : 'bg-white hover:bg-sky-50 text-slate-800 border-slate-200 shadow-sm hover:border-sky-300'
+                }`;
+                btn.onclick = () => selectGameStep(stepText);
+                btn.innerHTML = `
+                    <span>${stepText}</span>
+                    <span class="text-sky-600 font-extrabold text-sm ml-2">${isSelected ? '✓' : '+'}</span>
+                `;
+                container.appendChild(btn);
+            });
+        }
+
+        function selectGameStep(stepText) {
+            playSound('click');
+            if (currentSelectedGameOrder.length < 4 && !currentSelectedGameOrder.includes(stepText)) {
+                currentSelectedGameOrder.push(stepText);
+                renderGameOptions();
+                renderSelectedGameSequence();
+
+                if (currentSelectedGameOrder.length === 4) {
+                    document.getElementById('game-submit-btn').disabled = false;
+                }
+            }
+        }
+
+        function deselectGameStep(idx) {
+            playSound('click');
+            currentSelectedGameOrder.splice(idx, 1);
+            renderGameOptions();
+            renderSelectedGameSequence();
+            document.getElementById('game-submit-btn').disabled = true;
+        }
+
+        function renderSelectedGameSequence() {
+            const container = document.getElementById('game-selected-sequence');
+            if (currentSelectedGameOrder.length === 0) {
+                container.innerHTML = `<span class="text-xs text-slate-400 italic text-center">Дээрх алхмууд дээр дарж төлөвлөгөөгөө өрнүүлнэ үү...</span>`;
+                return;
+            }
+
+            container.innerHTML = '';
+            currentSelectedGameOrder.forEach((stepText, idx) => {
+                const item = document.createElement('div');
+                item.className = "flex items-center justify-between p-2.5 bg-white border border-sky-200 rounded-xl text-xs font-bold text-sky-900 animate-fade-in";
+                item.innerHTML = `
+                    <div class="flex items-center space-x-2">
+                        <span class="w-5 h-5 bg-sky-600 text-white rounded-full flex items-center justify-center text-[10px] font-black">${idx + 1}</span>
+                        <span>${stepText}</span>
+                    </div>
+                    <button onclick="deselectGameStep(${idx})" class="text-rose-500 hover:text-rose-700 font-extrabold px-1 text-xs">✕</button>
+                `;
+                container.appendChild(item);
+            });
+        }
+
+        function resetCurrentGameLevel() {
+            playSound('click');
+            loadGameLevel(currentGameLevelIndex);
+        }
+
+        function checkGameSequence() {
+            const lvl = GAME_LEVELS[currentGameLevelIndex];
+            const feedback = document.getElementById('game-feedback');
+            
+            let isCorrect = true;
+            for (let i = 0; i < lvl.correctOrder.length; i++) {
+                if (currentSelectedGameOrder[i] !== lvl.correctOrder[i]) {
+                    isCorrect = false;
+                    break;
+                }
+            }
+
+            if (isCorrect) {
+                playSound('win');
+                currentGameScore += 100;
+                currentGameStreak++;
+                document.getElementById('game-score').innerText = currentGameScore;
+                document.getElementById('game-streak').innerText = currentGameStreak;
+
+                feedback.className = "p-4 rounded-xl text-xs font-bold bg-emerald-50 text-emerald-900 border-2 border-emerald-400 block space-y-2";
+                feedback.innerHTML = `
+                    <div class="text-sm font-black text-emerald-800">🎉 Баяр хүргэе! Маш сайн төлөвлөгөө!</div>
+                    <p>Та алхмуудыг хугацааны яг зөв дараалалд оруулж чадлаа! +100 оноо авав.</p>
+                    ${currentGameLevelIndex < GAME_LEVELS.length - 1 ? `
+                        <button onclick="nextGameLevel()" class="mt-2 bg-emerald-600 hover:bg-emerald-700 text-white font-bold px-4 py-2 rounded-xl text-xs shadow transition">
+                            Дараагийн үе рүү ахиж тоглох ➔
+                        </button>
+                    ` : `
+                        <p class="font-extrabold text-sky-800">🏆 Та тоглоомын бүх үеийг амжилттай дуусгалаа!</p>
+                    `}
+                `;
+            } else {
+                playSound('wrong');
+                currentGameStreak = 0;
+                document.getElementById('game-streak').innerText = '0';
+
+                feedback.className = "p-4 rounded-xl text-xs font-bold bg-rose-50 text-rose-900 border-2 border-rose-400 block space-y-2";
+                feedback.innerHTML = `
+                    <div class="text-sm font-black text-rose-800">⚠️ Алхам дээр алдаа гарлаа!</div>
+                    <p>Ажиллах дараалал эсвэл хугацаа бага зэрэг буруу байна. Ахиад нэг нягтлан үзээд дахин туршаарай!</p>
+                    <button onclick="resetCurrentGameLevel()" class="mt-2 bg-rose-600 hover:bg-rose-700 text-white font-bold px-4 py-2 rounded-xl text-xs shadow transition">
+                        🔄 Дахин оролдох
+                    </button>
+                `;
+            }
+        }
+
+        function nextGameLevel() {
+            playSound('click');
+            if (currentGameLevelIndex < GAME_LEVELS.length - 1) {
+                loadGameLevel(currentGameLevelIndex + 1);
+            }
+        }
+
+        // =========================================================
+        // QUIZ & CERTIFICATE LOGIC
+        // =========================================================
+        function startQuiz() {
+            currentQuizIndex = 0;
+            quizScore = 0;
+            document.getElementById('quiz-box').classList.remove('hidden');
+            document.getElementById('certificate-box').classList.add('hidden');
+            loadQuizQuestion();
+        }
+
+        function loadQuizQuestion() {
+            const q = QUIZ_QUESTIONS[currentQuizIndex];
+            document.getElementById('quiz-progress').innerText = `Асуулт ${currentQuizIndex + 1} / ${QUIZ_QUESTIONS.length}`;
+            document.getElementById('quiz-question-text').innerText = q.question;
+
+            const optionsBox = document.getElementById('quiz-options');
+            optionsBox.innerHTML = '';
+
+            q.options.forEach((optText, idx) => {
+                const btn = document.createElement('button');
+                btn.className = "quiz-opt-btn text-left p-3.5 rounded-xl border border-slate-200 text-xs font-semibold text-slate-700 hover:bg-sky-50 hover:border-sky-300 transition flex items-center justify-between";
+                btn.onclick = () => handleQuizAnswer(idx, btn);
+                btn.innerHTML = `
+                    <span>${optText}</span>
+                    <span class="text-slate-300 font-bold">◯</span>
+                `;
+                optionsBox.appendChild(btn);
+            });
+
+            document.getElementById('quiz-feedback').classList.add('hidden');
+            document.getElementById('quiz-next-btn').classList.add('hidden');
+        }
+
+        function handleQuizAnswer(selectedIndex, btnEl) {
+            const q = QUIZ_QUESTIONS[currentQuizIndex];
+            const feedback = document.getElementById('quiz-feedback');
+            const allBtns = document.querySelectorAll('.quiz-opt-btn');
+
+            allBtns.forEach(b => b.disabled = true);
+
+            if (selectedIndex === q.correct) {
+                playSound('correct');
+                quizScore++;
+                btnEl.classList.add('bg-emerald-100', 'border-emerald-500', 'text-emerald-950');
+                feedback.className = "p-3.5 rounded-xl text-xs font-bold bg-emerald-50 text-emerald-800 border border-emerald-200 block";
+                feedback.innerText = `✅ Зөв хариуллаа! ${q.explanation}`;
+            } else {
+                playSound('wrong');
+                btnEl.classList.add('bg-rose-100', 'border-rose-500', 'text-rose-950');
+                allBtns[q.correct].classList.add('bg-emerald-50', 'border-emerald-400', 'text-emerald-900');
+                feedback.className = "p-3.5 rounded-xl text-xs font-bold bg-rose-50 text-rose-800 border border-rose-200 block";
+                feedback.innerText = `❌ Буруу хариуллаа. Зөв хариулт: "${q.options[q.correct]}". ${q.explanation}`;
+            }
+
+            document.getElementById('quiz-next-btn').classList.remove('hidden');
+        }
+
+        function nextQuizQuestion() {
+            playSound('click');
+            currentQuizIndex++;
+            if (currentQuizIndex < QUIZ_QUESTIONS.length) {
+                loadQuizQuestion();
+            } else {
+                finishQuiz();
+            }
+        }
+
+        function finishQuiz() {
+            document.getElementById('quiz-box').classList.add('hidden');
+            document.getElementById('certificate-box').classList.remove('hidden');
+
+            const scorePercent = Math.round((quizScore / QUIZ_QUESTIONS.length) * 100);
+            document.getElementById('cert-score-display').innerText = `${scorePercent}% (${quizScore}/${QUIZ_QUESTIONS.length})`;
+
+            // Set current date
+            const today = new Date().toISOString().split('T')[0];
+            document.getElementById('cert-date').innerText = today;
+
+            if (scorePercent >= 80) {
+                playSound('win');
+            }
+        }
+
+        function updateCertName() {
+            const inputVal = document.getElementById('cert-student-name').value;
+            document.getElementById('cert-display-name').innerText = inputVal.trim() !== '' ? inputVal : '[ Сурагчийн нэр ]';
+        }
+
+        function restartQuiz() {
+            playSound('click');
+            startQuiz();
+        }
+    </script>
+</body>
+</html>
